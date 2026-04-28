@@ -58,7 +58,7 @@ function App() {
             Practical guidance and resources for creating reproducible visualization research from the start.
           </p>
           <div className="event-details">
-            <strong>EuroVis</strong> · June 8, 2026 · Nottingham, UK · Time + Room TBD
+            <strong>EuroVis</strong> · June 8-12, 2026 · Nottingham, UK · Time + Room TBD
           </div>
         </section>
 
@@ -200,7 +200,7 @@ function App() {
             GitHub repository.
           </p>
           <a 
-            href="https://github.com" 
+            href="https://github.com/velitchko/README.md" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="btn"
