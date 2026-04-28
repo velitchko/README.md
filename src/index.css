@@ -413,6 +413,21 @@ h2 {
   color: #ffffff;
 }
 
+.btn-blog {
+  background: linear-gradient(135deg, #00d4ff, #0066cc);
+}
+
+.btn-blog:hover {
+  box-shadow: 0 4px 20px rgba(0, 180, 255, 0.4);
+}
+
+.resources-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Github, Sun, Moon, Linkedin, User } from 'lucide-react';
+import { Github, Sun, Moon, Linkedin, User, BookOpen } from 'lucide-react';
 import './index.css';
 
 function App() {
@@ -199,15 +199,26 @@ function App() {
             All materials—templates, checklists, guides, and example projects—are available in our 
             GitHub repository.
           </p>
-          <a 
-            href="https://github.com/velitchko/README.md" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn"
-          >
-            <Github size={18} />
-            View on GitHub
-          </a>
+          <div className="resources-buttons">
+            <a
+              href="https://github.com/velitchko/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+            >
+              <Github size={18} />
+              View on GitHub
+            </a>
+            <a
+              href="https://velitchko.github.io/blog/readme-2026"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-blog"
+            >
+              <BookOpen size={18} />
+              Read more...
+            </a>
+          </div>
         </section>
       </main>
     </>
