@@ -416,8 +416,7 @@ echo "Done. All figures saved to figures/"
 [Say:]
   "That's level two. Minimum viable.
    It took us ten minutes.
-   It will save you three hours on revision day.
-   Tobias will take you from here to level three."
+   It will save you three hours on revision day."
 
 [Finish.]
 
