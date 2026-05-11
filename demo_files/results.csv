@@ -1,0 +1,5 @@
+condition,accuracy
+Baseline,0.72
+Method A,0.81
+Method B,0.79
+Method C,0.85
