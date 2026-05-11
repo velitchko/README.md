@@ -1,6 +1,6 @@
 # README.md: A Tutorial on Reproducible Visualization Research
 
-> **EuroVis 2026** · June 8, 2026 · Nottingham, UK · Time + Room TBD
+> **EuroVis 2026** · June 8, 2026 · Nottingham, UK · 09:00 + Room F5
 
 Practical guidance and resources for creating reproducible visualization research from the start.
 
