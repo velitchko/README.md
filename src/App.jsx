@@ -58,7 +58,7 @@ function App() {
             Practical guidance and resources for creating reproducible visualization research from the start.
           </p>
           <div className="event-details">
-            <strong>EuroVis</strong> · June 8-12, 2026 · Nottingham, UK · 09:00 + Room F5
+            <strong>EuroVis 2026</strong> · Nottingham, UK · Friday, 12 June · 09:00 · Room F5
           </div>
         </section>
 
