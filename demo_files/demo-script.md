@@ -50,9 +50,7 @@
   "First commit. We exist. We're reproducible in the most minimal
    sense — at least someone can clone this."
 
-
-
-### STEP 2: THE README (~3 min) ───
+### STEP 2: THE README (~3 min) 
 
 [Say:]
   "Now the most important file in the repo. The README.
@@ -144,9 +142,7 @@ Velitchko Filipov — velitchko.filipov@tuwien.ac.at
   git add README.md
   git commit -m "add README with setup and usage instructions"
 
----
-
-### STEP 3: DEPENDENCIES (~2 min) ───
+### STEP 3: DEPENDENCIES (~2 min) 
 
 [Say:]
   "Before we install anything — isolate. Virtual environments
@@ -209,9 +205,7 @@ Velitchko Filipov — velitchko.filipov@tuwien.ac.at
    but for most visualization research a pinned requirements.txt
    is sufficient and way more likely to actually get done."
 
----
-
-### STEP 4: FIGURE SCRIPTS (~3 min) ───
+### STEP 4: FIGURE SCRIPTS (~3 min) 
 
 [Say:]
   "This is the one that pays off most consistently.
@@ -293,9 +287,8 @@ echo "Done. All figures saved to figures/"
   git add .
   git commit -m "add figure scripts and processed data"
 
----
 
-### STEP 5: GEN_AI.MD (~2 min) ───
+### STEP 5: GEN_AI.MD (~2 min) 
 
 [Say:]
   "One more file. For those of you using LLMs in your research
@@ -328,9 +321,7 @@ echo "Done. All figures saved to figures/"
   git add gen_ai.md llm_outputs/ AGENTS.md
   git commit -m "add LLM usage log and agent archiving protocol"
 
----
-
-### STEP 6: LLM-ASSISTED FIGURE GENERATION (~2.5 min) ───
+### STEP 6: LLM-ASSISTED FIGURE GENERATION (~2.5 min) 
 
 [Say:]
   "Now let's use it. Each agent tool has one config file it reads
@@ -375,9 +366,7 @@ echo "Done. All figures saved to figures/"
   git add scripts/figure2.py figures/figure2.pdf gen_ai.md llm_outputs/
   git commit -m "add LLM-generated figure2 script and archive task-002"
 
----
-
-### STEP 7: TAG AND TEST (~1 min) ───
+### STEP 7: TAG AND TEST (~1 min) 
 
 [Say:]
   "One more thing before submission. Tag the version.
@@ -396,9 +385,7 @@ echo "Done. All figures saved to figures/"
    Follow only the README. If it breaks, fix it now.
    Not after acceptance."
 
----
-
-##CHECKLIST SLIDE (~1 min) ───
+### CHECKLIST SLIDE (~1 min) 
 
 [Switch back to slides. Show checklist.]
 
@@ -422,7 +409,7 @@ echo "Done. All figures saved to figures/"
 
 ---
 
-##TIMING GUIDE ───
+### TIMING GUIDE 
 
   Pivot slide + intro       ~0.5 min
   Step 1: init + structure  ~2.0 min
@@ -433,7 +420,7 @@ echo "Done. All figures saved to figures/"
   Step 6: LLM figure gen    ~2.5 min   ← Claude Code live
   Step 7: tag + test        ~1.0 min
   Checklist + handoff       ~1.0 min
-  ────────────────────────────────
+  ──
   TOTAL                    ~17.0 min
 
   If running long: cut Step 7 (tagging), go straight to checklist.
@@ -441,72 +428,11 @@ echo "Done. All figures saved to figures/"
 
 ---
 
-##PRE-STAGED FILES ───
+### PRE-STAGED FILES
 
 Copy these from ~/demo_files/ to ~/Projects/my_reproducible_paper for the session.
 
-### ~/demo-assets/results.csv
-
-condition,accuracy
-Baseline,0.72
-Method A,0.81
-Method B,0.79
-Method C,0.85
-
-### ~/demo-assets/figure3.py
-
-import matplotlib.pyplot as plt
-import pandas as pd
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument('--output', required=True)
-args = parser.parse_args()
-
-df = pd.read_csv('data/processed/results.csv')
-
-fig, ax = plt.subplots(figsize=(6, 4))
-ax.bar(df['condition'], df['accuracy'], color='#4C72B0')
-ax.set_xlabel('Condition')
-ax.set_ylabel('Accuracy')
-ax.set_title('Figure 3: Accuracy by Condition')
-plt.tight_layout()
-plt.savefig(args.output)
-print(f"Saved to {args.output}")
-
-### ~/demo-assets/gen_ai.md
-
-# LLM Usage Log
-
-> All LLM tasks that contribute to this paper's results, figures, or analysis
-> are archived here. See `AGENTS.md` for the archiving protocol.
-
----
-
-## Task Index
-
-| ID | Date | Provider | Model | Interface | Prompt | Output |
-|----|------|----------|-------|-----------|--------|--------|
-
-────────────────────────────────────────────────────────────────
-
-### ~/demo-assets/run_all.sh
-
-#!/bin/bash
-set -e
-cd "$(cd -- "$(dirname "$0")" && pwd)/.."   # always run from project root
-
-for script in scripts/*.py; do
-    name=$(basename "$script" .py)
-    echo "Generating ${name}..."
-    python "$script" --output "figures/${name}.pdf"
-done
-
-echo "Done. All figures saved to figures/"
-
----
-
-##COMMON PITFALLS TO MENTION (pick 2-3 during step 4) ───
+### COMMON PITFALLS TO MENTION (pick 2-3 during step 4) 
 
   ❌  Hardcoded paths  /Users/yourname/Desktop/project/data/...
   ❌  Missing dep in requirements.txt (installed globally, not listed)
