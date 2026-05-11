@@ -1,59 +1,9 @@
 # LIVE DEMO SCRIPT — Part I
-# README.md: A Tutorial on Reproducible Visualization Research
-# EuroVIS 2026 · Velitchko Filipov
-# ════════════════════════════════════════════════════════════════
-# PRINT THIS. HAVE IT IN FRONT OF YOU.
-# Everything in [BRACKETS] is a spoken prompt or question.
-# Everything in code blocks is typed exactly as shown.
-# ════════════════════════════════════════════════════════════════
 
-## ── BEFORE YOU WALK IN ──────────────────────────────────────────
+## README.md: A Tutorial on Reproducible Visualization Research
+> EuroVIS 2026 · Velitchko Filipov · Tobias Isenberg  ·  Alexander Lex
 
-Pre-check (do this the night before AND 30 min before the session):
-
-  [ ] Terminal open, starting directory is ~/Desktop/ or similar clean location
-  [ ] Python 3.10+ available:        python --version
-  [ ] Git available:                 git --version
-  [ ] Demo repo DOES NOT exist yet   (you will create it live)
-  [ ] Pre-built fallback repo exists at ~/demo-paper-BACKUP/ (see §EMERGENCY)
-  [ ] VS Code / editor ready to open .md files with preview
-  [ ] data/processed/results.csv pre-staged at ~/demo-assets/results.csv
-  [ ] scripts/figure3.py pre-staged at ~/demo-assets/figure3.py
-  [ ] scripts/run_all.sh pre-staged at ~/demo-assets/run_all.sh
-  [ ] gen_ai.md pre-staged at ~/demo-assets/gen_ai.md
-  [ ] AGENTS.md pre-staged at ~/demo-assets/AGENTS.md
-  [ ] Slide deck open on one screen, terminal on the other (or split view)
-  [ ] Font size bumped up: terminal 18pt+, editor 18pt+
-
-────────────────────────────────────────────────────────────────
-
-## ── TEST DRIVE (run this before the session) ───────────────────
-
-Verify the AGENTS.md protocol works end-to-end:
-
-  mkdir /tmp/agent-test && cd /tmp/agent-test
-  git init
-  mkdir llm_outputs
-  cp ~/demo-assets/AGENTS.md AGENTS.md
-  cp ~/demo-assets/gen_ai.md gen_ai.md
-  cp AGENTS.md CLAUDE.md
-
-Then start a claude session in that directory and give it a small task:
-
-  claude "Write a hello.py that prints Hello, World."
-
-Check that it:
-  [ ] Created llm_outputs/task-002-prompt.md
-  [ ] Created llm_outputs/task-002-output.md  (with REPRODUCE block at bottom)
-  [ ] Appended a row to the Task Index in gen_ai.md
-
-If any of those are missing, the AGENTS.md wording needs adjusting before the demo.
-
-  cd ~/Desktop && rm -rf /tmp/agent-test   # clean up
-
-────────────────────────────────────────────────────────────────
-
-## ── PIVOT SLIDE: "LET'S FIX IT" (~30 sec) ─────────────────────
+### PIVOT SLIDE: "LET'S FIX IT" (~30 sec)
 
 [Say:]
   "Enough of the why. Let's actually do it.
@@ -63,9 +13,7 @@ If any of those are missing, the AGENTS.md wording needs adjusting before the de
 
 [Switch to terminal. Do not go back to slides until the checklist.]
 
-────────────────────────────────────────────────────────────────
-
-## ── STEP 1: INIT THE REPO (~2 min) ─────────────────────────────
+### STEP 1: INIT THE REPO (~2 min)
 
 [Say:]
   "First thing. We have a paper. We have some code. What do we do?"
@@ -102,9 +50,9 @@ If any of those are missing, the AGENTS.md wording needs adjusting before the de
   "First commit. We exist. We're reproducible in the most minimal
    sense — at least someone can clone this."
 
-────────────────────────────────────────────────────────────────
 
-## ── STEP 2: THE README (~3 min) ────────────────────────────────
+
+### STEP 2: THE README (~3 min) ───
 
 [Say:]
   "Now the most important file in the repo. The README.
@@ -196,9 +144,9 @@ Velitchko Filipov — velitchko.filipov@tuwien.ac.at
   git add README.md
   git commit -m "add README with setup and usage instructions"
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── STEP 3: DEPENDENCIES (~2 min) ──────────────────────────────
+### STEP 3: DEPENDENCIES (~2 min) ───
 
 [Say:]
   "Before we install anything — isolate. Virtual environments
@@ -261,9 +209,9 @@ Velitchko Filipov — velitchko.filipov@tuwien.ac.at
    but for most visualization research a pinned requirements.txt
    is sufficient and way more likely to actually get done."
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── STEP 4: FIGURE SCRIPTS (~3 min) ───────────────────────────
+### STEP 4: FIGURE SCRIPTS (~3 min) ───
 
 [Say:]
   "This is the one that pays off most consistently.
@@ -345,9 +293,9 @@ echo "Done. All figures saved to figures/"
   git add .
   git commit -m "add figure scripts and processed data"
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── STEP 5: GEN_AI.MD (~2 min) ────────────────────────────────
+### STEP 5: GEN_AI.MD (~2 min) ───
 
 [Say:]
   "One more file. For those of you using LLMs in your research
@@ -380,9 +328,9 @@ echo "Done. All figures saved to figures/"
   git add gen_ai.md llm_outputs/ AGENTS.md
   git commit -m "add LLM usage log and agent archiving protocol"
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── STEP 6: LLM-ASSISTED FIGURE GENERATION (~2.5 min) ──────────
+### STEP 6: LLM-ASSISTED FIGURE GENERATION (~2.5 min) ───
 
 [Say:]
   "Now let's use it. Each agent tool has one config file it reads
@@ -427,9 +375,9 @@ echo "Done. All figures saved to figures/"
   git add scripts/figure2.py figures/figure2.pdf gen_ai.md llm_outputs/
   git commit -m "add LLM-generated figure2 script and archive task-002"
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── STEP 7: TAG AND TEST (~1 min) ─────────────────────────────
+### STEP 7: TAG AND TEST (~1 min) ───
 
 [Say:]
   "One more thing before submission. Tag the version.
@@ -448,22 +396,22 @@ echo "Done. All figures saved to figures/"
    Follow only the README. If it breaks, fix it now.
    Not after acceptance."
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── CHECKLIST SLIDE (~1 min) ───────────────────────────────────
+##CHECKLIST SLIDE (~1 min) ───
 
 [Switch back to slides. Show checklist.]
 
 [Walk through each item — tick them off as you go:]
 
-  [✓] Git repo initialized and pushed
-  [✓] Folder structure: raw/, processed/, scripts/, figures/
-  [✓] README.md: what, how, what it produces
-  [✓] Virtual environment (.venv/) in .gitignore, setup documented in README
-  [✓] Dependencies locked (requirements.txt)
-  [✓] One script per figure, relative paths only
-  [✓] gen_ai.md if LLMs in the research pipeline
-  [ ] Fresh clone test before submission  ← "do this tonight"
+  - [ ] Git repo initialized and pushed
+  - [ ] Folder structure: raw/, processed/, scripts/, figures/
+  - [ ] README.md: what, how, what it produces
+  - [ ] Virtual environment (.venv/) in .gitignore, setup documented in README
+  - [ ] Dependencies locked (requirements.txt)
+  - [ ] One script per figure, relative paths only
+  - [ ] gen_ai.md if LLMs in the research pipeline
+  - [ ] Fresh clone test before submission  ← "do this tonight"
 
 [Say:]
   "That's level two. Minimum viable.
@@ -471,11 +419,11 @@ echo "Done. All figures saved to figures/"
    It will save you three hours on revision day.
    Tobias will take you from here to level three."
 
-[Hand off to Tobias.]
+[Finish.]
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── TIMING GUIDE ───────────────────────────────────────────────
+##TIMING GUIDE ───
 
   Pivot slide + intro       ~0.5 min
   Step 1: init + structure  ~2.0 min
@@ -492,11 +440,11 @@ echo "Done. All figures saved to figures/"
   If running long: cut Step 7 (tagging), go straight to checklist.
   If running very long: skip gen_ai.md live, say "it's in the repo".
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── PRE-STAGED FILES ───────────────────────────────────────────
+##PRE-STAGED FILES ───
 
-Save these to ~/demo-assets/ BEFORE the session.
+Copy these from ~/demo_files/ to ~/Projects/my_reproducible_paper for the session.
 
 ### ~/demo-assets/results.csv
 
@@ -557,37 +505,16 @@ done
 
 echo "Done. All figures saved to figures/"
 
-────────────────────────────────────────────────────────────────
+---
 
-## ── EMERGENCY FALLBACK ──────────────────────────────────────────
-
-If the live demo breaks catastrophically:
-
-  cd ~/demo-paper-BACKUP
-  git log --oneline          # show the commit history
-  bash scripts/run_all.sh    # show the figure running
-
-Pre-build this backup repo the night before by running through
-the full script once. It should be a complete, working version
-of everything you would have built live.
-
-If only one thing breaks:
-  Terminal broken?     → switch to pre-built backup
-  pip freeze fails?    → show the pre-committed requirements.txt
-  Figure won't run?    → open figures/figure3.pdf directly
-  Running 3+ min long? → skip gen_ai.md, mention it's in the repo
-  Lost your place?     → go straight to checklist slide, tick from memory
-
-────────────────────────────────────────────────────────────────
-
-## ── COMMON PITFALLS TO MENTION (pick 2-3 during step 4) ────────
+##COMMON PITFALLS TO MENTION (pick 2-3 during step 4) ───
 
   ❌  Hardcoded paths  /Users/yourname/Desktop/project/data/...
   ❌  Missing dep in requirements.txt (installed globally, not listed)
-  ❌  Data file not committed or too large for git
+  ❌  Data file not committed or too large for git (→ use (git LFS)[https://git-lfs.com/])
   ❌  Undocumented preprocessing step ("just run this first")
   ❌  Random seed not set → non-deterministic outputs
   ❌  README says run script.py but file is called analysis_FINAL.py
   ❌  package-lock.json in .gitignore
 
-────────────────────────────────────────────────────────────────
+---
