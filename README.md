@@ -41,6 +41,15 @@ The tutorial is structured in three parts with interactive polling, live demonst
 
 ## Resources
 
-All materials—templates, checklists, guides, and example projects—are available in our GitHub repository.
+### Demo Files
 
-[**View on GitHub**](https://github.com)
+The [`demo_files/`](demo_files/) directory contains everything needed to follow along with or reproduce the live demo from Part I of the tutorial.
+
+| File | Description |
+|------|-------------|
+| [`demo-script.md`](demo_files/demo-script.md) | Full presenter script with step-by-step instructions for the live demo |
+| [`figure3.py`](demo_files/figure3.py) | Example figure script: vertical bar chart of accuracy by condition |
+| [`run_all.sh`](demo_files/run_all.sh) | Shell script to regenerate all figures in one command |
+| [`results.csv`](demo_files/results.csv) | Sample dataset used by the figure scripts |
+| [`AGENTS.md`](demo_files/AGENTS.md) | LLM archiving protocol — loaded by agent tools (Claude Code, Codex, Cursor) |
+| [`gen_ai.md`](demo_files/gen_ai.md) | Example LLM usage log with task index and output references |
