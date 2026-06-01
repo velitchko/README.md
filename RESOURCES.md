@@ -131,7 +131,7 @@ Visualization-community-specific literature on reproducibility and replicability
 
 ## Templates & Starter Kits
 
-> A companion repository — **`vis-reproducibility-kit`** — is planned as a GitHub template repository usable via "Use this template." It will provide stack-agnostic reproducibility scaffolding plus per-language dependency examples covering Python, R, JavaScript/TypeScript, Jupyter, and C++.
+> **[vis-reproducibility-kit](https://github.com/visvar/vis-reproducibility-kit)** — GitHub template repository. Use via "Use this template" to start a new reproducible project. Provides stack-agnostic scaffolding (`core/`) plus per-language dependency examples (`stacks/`) covering Python, R, JavaScript/TypeScript, Jupyter, and C++.
 
 **Planned structure:**
 
