@@ -23,8 +23,8 @@ The live demo builds a minimum viable reproducible repo from scratch (~10 min):
 2. README with setup/usage instructions
 3. Virtual environment + pinned `requirements.txt`
 4. One script per figure, relative paths only
-5. `gen_ai.md` + `AGENTS.md` for LLM usage logging
-6. Live LLM-assisted figure generation via Claude Code
+5. (optional) `gen_ai.md` + `AGENTS.md` for LLM usage logging
+6. (optional) Live LLM-assisted figure generation via Claude Code
 7. Git tag before submission + fresh-clone test
 
 ## Pre-staging for Live Demo
