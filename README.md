@@ -41,15 +41,14 @@ The tutorial is structured in three parts with interactive polling, live demonst
 
 ## Resources
 
-### Demo Files
+### Tutorial Materials
 
-The [`demo_files/`](demo_files/) directory contains everything needed to follow along with or reproduce the live demo from Part I of the tutorial.
+The [`tutorial-materials/`](tutorial-materials/) directory is organized by tutorial segment:
 
-| File | Description |
-|------|-------------|
-| [`demo-script.md`](demo_files/demo-script.md) | Full presenter script with step-by-step instructions for the live demo |
-| [`figure3.py`](demo_files/figure3.py) | Example figure script: vertical bar chart of accuracy by condition |
-| [`run_all.sh`](demo_files/run_all.sh) | Shell script to regenerate all figures in one command |
-| [`results.csv`](demo_files/results.csv) | Sample dataset used by the figure scripts |
-| [`AGENTS.md`](demo_files/AGENTS.md) | LLM archiving protocol — loaded by agent tools (Claude Code, Codex, Cursor) |
-| [`gen_ai.md`](demo_files/gen_ai.md) | Example LLM usage log with task index and output references |
+| Directory | Segment | Contents |
+|-----------|---------|----------|
+| [`part1-reproducible-repo/`](tutorial-materials/part1-reproducible-repo/) | Part I (9:05–9:25) | Live demo files: figure scripts, sample data, LLM logging setup |
+| [`part2-approaches/`](tutorial-materials/part2-approaches/) | Part II (9:25–9:45) | GRSI & archiving examples, LaTeX number injection (Tobias Isenberg) |
+| [`part3-study-replication/`](tutorial-materials/part3-study-replication/) | Part III (9:45–10:05) | reVISit 2 walkthrough, provenance tracking (Alexander Lex) |
+
+See each subdirectory's `README.md` for details on its contents.
