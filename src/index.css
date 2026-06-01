@@ -393,6 +393,7 @@ h2 {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: linear-gradient(135deg, var(--color-purple), var(--color-pink));
   border: none;
@@ -404,6 +405,7 @@ h2 {
   color: #ffffff;
   transition: all 0.2s;
   cursor: pointer;
+  width: 12rem;
 }
 
 .btn:hover {
@@ -421,12 +423,128 @@ h2 {
   box-shadow: 0 4px 20px rgba(0, 180, 255, 0.4);
 }
 
+.btn-paper {
+  background: linear-gradient(135deg, #f97316, #dc2626);
+}
+
+.btn-paper:hover {
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+}
+
 .resources-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
+
+@media (max-width: 480px) {
+  .resources-buttons .btn {
+    width: auto;
+    padding: 0.75rem;
+  }
+  .btn-label {
+    display: none;
+  }
+}
+
+.bibtex-block {
+  margin-top: 2rem;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  overflow: hidden;
+  text-align: left;
+}
+
+[data-theme="light"] .bibtex-block {
+  border-color: #c8c8c8;
+}
+
+.bibtex-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #1e1e1e;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+[data-theme="light"] .bibtex-header {
+  background: #f0f0f0;
+  border-bottom-color: #c8c8c8;
+}
+
+.bibtex-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bibtex-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  color: #8a8a8a;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+[data-theme="light"] .bibtex-copy {
+  border-color: #b0b0b0;
+  color: #666666;
+}
+
+.bibtex-copy:hover {
+  color: var(--color-text);
+  border-color: #888888;
+}
+
+.bibtex-code {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  background: #141414;
+  color: #a0a0a0;
+  white-space: pre;
+}
+
+[data-theme="light"] .bibtex-code {
+  background: #fafafa;
+  color: #555555;
+}
+
+/* Reset the global code color inside the bibtex block */
+.bibtex-code .bibtex-highlighted {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* BibTeX syntax tokens — muted palette echoing the page's pink/purple */
+.bib-type      { color: #b06878; } /* muted rose — @inproceedings */
+.bib-entrykey  { color: #7878a0; } /* muted slate */
+.bib-field     { color: #7a9ab8; } /* muted steel blue — field names */
+.bib-value     { color: #a0a890; } /* muted sage — values */
+.bib-punct     { color: #555565; } /* dark muted gray — braces, =, commas */
+
+[data-theme="light"] .bib-type     { color: #a04555; }
+[data-theme="light"] .bib-entrykey { color: #5c5c80; }
+[data-theme="light"] .bib-field    { color: #3a6e8c; }
+[data-theme="light"] .bib-value    { color: #5a6e45; }
+[data-theme="light"] .bib-punct    { color: #909090; }
 
 /* Responsive */
 @media (max-width: 768px) {

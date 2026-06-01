@@ -1,9 +1,72 @@
 import { useState, useEffect } from 'react';
-import { Github, Sun, Moon, Linkedin, User, BookOpen } from 'lucide-react';
+import { Github, Sun, Moon, Linkedin, User, BookOpen, FileText, Copy, Check } from 'lucide-react';
 import './index.css';
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  const [copied, setCopied] = useState(false);
+
+  const bibtex = `@inproceedings{filipov2026readme,
+  booktitle = {EuroVis 2026 - Panels and Tutorials},
+  editor    = {Sedlmair, Michael and Hoellt, Thomas and van den Elzen, Stef},
+  title     = {{README.md: A Tutorial on Reproducible Visualization Research}},
+  author    = {Filipov, Velitchko and Isenberg, Tobias and Lex, Alexander},
+  year      = {2026},
+  publisher = {The Eurographics Association},
+  ISBN      = {978-3-03868-304-9},
+  DOI       = {10.2312/evt.20261000}
+}`;
+
+  const highlightBibtex = (text) => {
+    const lines = text.split('\n');
+    return lines.map((line, i) => {
+      const isLast = i === lines.length - 1;
+      const nl = isLast ? null : '\n';
+
+      // @type{key,
+      const entryMatch = line.match(/^(@\w+)(\{)(.+?)(,?)$/);
+      if (entryMatch) {
+        return (
+          <span key={i}>
+            <span className="bib-type">{entryMatch[1]}</span>
+            <span className="bib-punct">{entryMatch[2]}</span>
+            <span className="bib-entrykey">{entryMatch[3]}</span>
+            <span className="bib-punct">{entryMatch[4]}</span>
+            {nl}
+          </span>
+        );
+      }
+
+      // Closing brace
+      if (line.trim() === '}') {
+        return <span key={i}><span className="bib-punct">{'}'}</span>{nl}</span>;
+      }
+
+      // field = {value},
+      const fieldMatch = line.match(/^(\s*)(\w+)(\s*=\s*)(\{.*\})(,?)$/);
+      if (fieldMatch) {
+        return (
+          <span key={i}>
+            {fieldMatch[1]}
+            <span className="bib-field">{fieldMatch[2]}</span>
+            <span className="bib-punct">{fieldMatch[3]}</span>
+            <span className="bib-value">{fieldMatch[4]}</span>
+            <span className="bib-punct">{fieldMatch[5]}</span>
+            {nl}
+          </span>
+        );
+      }
+
+      return <span key={i}>{line}{nl}</span>;
+    });
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(bibtex).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
@@ -207,7 +270,16 @@ function App() {
               className="btn"
             >
               <Github size={18} />
-              View on GitHub
+              <span className="btn-label">Repository</span>
+            </a>
+            <a
+              href="https://diglib.eg.org/items/9f2385fa-db96-42f7-9f64-f6c914dac274"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-paper"
+            >
+              <FileText size={18} />
+              <span className="btn-label">Paper</span>
             </a>
             <a
               href="https://velitchko.github.io/blog/readme-2026"
@@ -216,8 +288,19 @@ function App() {
               className="btn btn-blog"
             >
               <BookOpen size={18} />
-              Read more...
+              <span className="btn-label">Read more...</span>
             </a>
+          </div>
+
+          <div className="bibtex-block">
+            <div className="bibtex-header">
+              <span className="bibtex-label">BibTeX Citation</span>
+              <button className="bibtex-copy" onClick={handleCopy} aria-label="Copy BibTeX">
+                {copied ? <Check size={15} /> : <Copy size={15} />}
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+            <pre className="bibtex-code"><code className="bibtex-highlighted">{highlightBibtex(bibtex)}</code></pre>
           </div>
         </section>
       </main>
