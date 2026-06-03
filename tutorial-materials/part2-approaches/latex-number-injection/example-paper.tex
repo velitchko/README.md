@@ -1,0 +1,36 @@
+\documentclass{article}
+
+%% Paper title.
+\title{Example for injecting data analysis results into \LaTeX{} via script-generated macros}
+
+\author{Tobias Isenberg\,\href{https://orcid.org/0000-0001-7953-8644}{\includegraphics[height=.7em]{./orcid.pdf}}\\
+  \scriptsize Université Paris-Saclay, CNRS, Inria, LISN, France\\
+	\scriptsize e-mail: given\_name.family\_name@inria.fr
+}
+
+\date{}
+
+\usepackage{ccicons}
+\usepackage{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgf}
+
+\newcommand*{\percentageRounded}[2]{%
+	\pgfmathparse{#1*100/#2}%
+	\pgfmathprintnumber[fixed, precision=1]{\pgfmathresult}%
+}
+
+\input{numbersFromScript.tex}
+
+\begin{document}
+
+\maketitle
+
+\noindent My first key metric is \KeyMetricOne{} and the second is \KeyMetricTwo. The sum of the two is \pgfmathparse{\KeyMetricOne+\KeyMetricTwo}\pgfmathprintnumber[fixed, precision=0]{\pgfmathresult}, and the first is $\approx$\percentageRounded{\KeyMetricOne}{\KeyMetricTwo}\% of second. The key metric for 2026 is \KeyMetricInMMXXVI, or rounded to 3 digits it is \pgfmathparse{\KeyMetricInMMXXVI}\pgfmathprintnumber[fixed, precision=3]{\pgfmathresult}. A metric that contains a string is also possible, such as ``\KeyMetricString''.
+
+\vspace{3em}
+
+\noindent\scriptsize This document and its sources are shared under the \href{https://creativecommons.org/licenses/by/4.0/}{\ccbysa{} CC-BY 4.0 license}.
+
+\end{document}
+
