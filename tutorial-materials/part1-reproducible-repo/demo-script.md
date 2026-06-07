@@ -1,29 +1,15 @@
-# LIVE DEMO SCRIPT — Part I
+# Live Demo Process — Part I
 
 ## README.md: A Tutorial on Reproducible Visualization Research
-> EuroVIS 2026 · Velitchko Filipov · Tobias Isenberg  ·  Alexander Lex
+> EuroVIS 2026 · Velitchko Filipov · Tobias Isenberg · Alexander Lex
 
-### PIVOT SLIDE: "LET'S FIX IT" (~30 sec)
+---
 
-> [Say:]
-> "Enough of the why. Let's actually do it.
->  We're going to build a minimum viable reproducible repo — live —
->  right now. This will take about ten minutes.
->  If you want to follow along, open a terminal. If not, just watch."
+### 1. Initialize the Repository (~2 min)
 
-> [Switch to terminal. Do not go back to slides until the checklist.]
+Start with the most basic question: you have a paper, you have some code — what do you do first?
 
-### STEP 1: INIT THE REPO (~2 min)
-
-> [Say:]
-> "First thing. We have a paper. We have some code. What do we do?"
-
-> [Ask the room:]
-> "Who here version controls their research from day one?
->  ...and who adds git right before submission?"
-> [pause, note the split, react naturally]
-
-> [Type exactly:]
+Gauge the room: who version controls from day one, and who adds git right before submission? React naturally to the split — it's almost always telling.
 
 ```bash
 cd ~/Projects
@@ -32,42 +18,27 @@ cd my-eurovis-paper
 git init
 ```
 
-> [Say:]
-> "That's it. We have a repo. Empty, but tracked.
->  The commit history is going to be our lab notebook —
->  what changed, when, and why."
-
-> [Continue typing:]
+The commit history is the lab notebook — what changed, when, and why.
 
 ```bash
 mkdir -p data/raw data/processed scripts figures paper llm_outputs
 touch README.md AGENTS.md
 ```
 
-> [Ask the room:]
-> "What else do you usually end up needing?
->  Any folders I'm missing?"
-> [take one or two suggestions, add them if sensible]
+Ask if anyone sees a folder they'd add. Take one or two suggestions and include them if sensible — the audience engagement is the point.
 
 ```bash
 git add .
 git commit -m "initial project structure"
 ```
 
-> [Say:]
-> "First commit. We exist. We're reproducible in the most minimal
->  sense — at least someone can clone this."
+---
 
-### STEP 2: THE README (~3 min) 
+### 2. Write the README (~3 min)
 
-> [Say:]
-> "Now the most important file in the repo. The README.
->  Not a placeholder. Not a title and one line.
->  A document that answers three questions:
->  what is this, how do I run it, what does it produce."
+The README is the most important file in the repo. Not a placeholder — a document that answers three questions: what is this, how do I run it, what does it produce.
 
-> [Open README.md in editor. Type the following live, asking the room
-> to fill in each section:]
+Build it live, asking the room to fill in each section as you go. The target: a stranger — or you in six months — can go from fresh clone to running system in under ten minutes. Write it for the most tired, confused version of yourself.
 
 ---PASTE / TYPE THIS INTO README.md---
 
@@ -127,69 +98,40 @@ Velitchko Filipov — velitchko.filipov@tuwien.ac.at
 
 ---END README---
 
-> [Say — when you reach the Project Structure section:]
-> "Instead of typing this by hand, just run tree in the terminal
->  and paste the output. It's always accurate and takes two seconds."
-
-> [Switch to terminal briefly. Type:]
+When you reach the Project Structure section, run `tree` in the terminal instead of typing it by hand — always accurate and takes two seconds:
 
 ```bash
 tree -L 2 --dirsfirst
 ```
 
-> [Copy the output. Paste it into the README under Project Structure.
-> Then switch back to the editor and continue.]
-
-> [Ask the room while typing:]
-> "What goes in Requirements? What do YOU always forget to list?"
-> "What would you want to see in Usage that you've never seen?"
-
-> [Say:]
-> "Goal: a stranger — including you in six months —
->  can go from fresh clone to running system in under ten minutes.
->  Write it for the most tired, confused version of yourself."
-
-> [Save. Then:]
+Good prompts for the room while writing:
+- "What goes in Requirements? What do YOU always forget to list?"
+- "What would you want to see in Usage that you've never seen?"
 
 ```bash
 git add README.md
 git commit -m "add README with setup and usage instructions"
 ```
 
-### STEP 3: DEPENDENCIES (~2 min) 
+---
 
-> [Say:]
-> "Before we install anything — isolate. Virtual environments
->  mean your project's packages never collide with your system
->  or another project. This is the one step people skip and
->  then spend two hours debugging on someone else's machine."
+### 3. Lock Dependencies (~2 min)
 
-> [Type:]
+Before installing anything, isolate. Virtual environments mean the project's packages never collide with your system or another project. This is the one step people skip and then spend two hours debugging on someone else's machine.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 ```
 
-> [Say:]
-> "On Windows that's .venv\\Scripts\\activate instead.
->  Your prompt should now show (.venv) — everything you install
->  from here stays in this folder.
->  If you don't see it — some shells or prompt themes suppress it —
->  you can always verify with:"
-
-> [Type:]
+Note for Windows: `.venv\Scripts\activate`. The prompt should show `(.venv)`. If it doesn't — some shells suppress it — verify with:
 
 ```bash
 echo $VIRTUAL_ENV
 which python
 ```
 
-> [Say:]
-> "VIRTUAL_ENV prints the venv path if active, empty if not.
->  And which python should point into your .venv folder."
-
-> [Type:]
+`VIRTUAL_ENV` prints the venv path if active, empty if not. `which python` should point into your `.venv` folder.
 
 ```bash
 echo ".venv/" >> .gitignore
@@ -197,14 +139,7 @@ git add .gitignore
 git commit -m "add .gitignore for virtual environment"
 ```
 
-> [Say:]
-> "Most common reproducibility failure: dependency drift.
->  You wrote code against pandas 1.5.
->  Someone runs it with pandas 2.1.
->  It either breaks — or worse — runs and gives the wrong answer
->  with no error message."
-
-> [Type:]
+The most common reproducibility failure is dependency drift. You wrote code against pandas 1.5. Someone runs it with pandas 2.1. It either breaks — or worse, runs and gives the wrong answer with no error message.
 
 ```bash
 pip install matplotlib pandas
@@ -212,35 +147,24 @@ pip freeze > requirements.txt
 cat requirements.txt
 ```
 
-> [Say:]
-> "Every package. Exact version. Pinned.
->  Commit this immediately — right after the code runs cleanly.
->  Not as an afterthought."
-
-> [Type:]
+Every package. Exact version. Pinned. Commit this immediately — right after the code runs cleanly. Not as an afterthought.
 
 ```bash
 git add requirements.txt
 git commit -m "pin dependencies"
 ```
 
-> [If using JavaScript, mention:]
-> "For Node projects: package-lock.json already does this.
->  The mistake people make is adding it to .gitignore.
->  Don't. That file is what makes your JS deps reproducible."
+For Node projects: `package-lock.json` already does this. The mistake people make is adding it to `.gitignore`. Don't. That file is what makes JS deps reproducible.
 
-> [Say:]
-> "Docker takes this further — full environment isolation —
->  but for most visualization research a pinned requirements.txt
->  is sufficient and way more likely to actually get done."
+Docker takes this further — full environment isolation — but for most visualization research a pinned `requirements.txt` is sufficient and far more likely to actually get done.
 
-### STEP 4: FIGURE SCRIPTS (~3 min) 
+---
 
-> [Say:]
-> "This is the one that pays off most consistently.
->  Every figure in your paper — one command. That's the rule."
+### 4. One Script Per Figure (~3 min)
 
-> [Copy pre-staged files in:]
+This is the practice that pays off most consistently: every figure in your paper, one command. That's the rule.
+
+Copy the pre-staged files:
 
 ```bash
 cp ~/demo-assets/results.csv data/processed/results.csv
@@ -249,7 +173,7 @@ cp ~/demo-assets/run_all.sh scripts/run_all.sh
 chmod +x scripts/run_all.sh
 ```
 
-> [Show the script briefly in editor — figure3.py should look like:]
+Show `figure3.py` briefly in the editor:
 
 ```python
 import matplotlib.pyplot as plt
@@ -272,7 +196,7 @@ plt.savefig(args.output)
 print(f"Saved to {args.output}")
 ```
 
-> [Show run_all.sh:]
+Show `run_all.sh`:
 
 ```bash
 #!/bin/bash
@@ -294,52 +218,25 @@ echo ""
 echo "Done. All figures saved to figures/"
 ```
 
-> [Say:]
-> "Notice three things: relative paths everywhere, no hardcoded
->  /Users/velitchko/Desktop/... anywhere.
->  The cd at the top anchors the script to the project root —
->  so it works whether you call it from the root, from scripts/,
->  or from anywhere else.
->  And set -e — if anything breaks, it stops immediately
->  rather than silently continuing."
-
-> [Run it:]
+Three things to point out: relative paths everywhere (no hardcoded `/Users/velitchko/Desktop/...`), the `cd` at the top anchors the script to the project root so it works from anywhere, and `set -e` stops immediately on failure rather than silently continuing.
 
 ```bash
 bash scripts/run_all.sh
-```
-
-> [Type:]
-
-```bash
 timg figures/figure3.pdf
 ```
 
-> [Ask the room:]
-> "How many of your current figures can be reproduced
->  with a single command like this?
->  What's stopping the others?"
-> [let one or two people answer]
-
-> [Type:]
+Ask the room: how many of your current figures can be reproduced with a single command? What's stopping the others? Let one or two people answer.
 
 ```bash
 git add .
 git commit -m "add figure scripts and processed data"
 ```
 
+---
 
-### STEP 5: GEN_AI.MD (~2 min) 
+### 5. (OPTIONAL) Document LLM Usage (~2 min)
 
-> [Say:]
-> "One more file. For those of you using LLMs in your research
->  pipeline — not for writing polish or debugging code,
->  but for anything that ends up in your results —
->  this needs to be documented like any other dependency.
->  The structure here has two parts: a pre-prompt that instructs
->  any LLM to document itself, and an index table of every task."
-
-> [Type:]
+For anyone using LLMs in their research pipeline — not for writing polish or debugging code, but for anything that ends up in the results — this needs to be documented like any other dependency. The structure has two parts: a pre-prompt that instructs any LLM to document itself, and an index table of every task.
 
 ```bash
 cp ~/demo-assets/gen_ai.md gen_ai.md
@@ -347,35 +244,20 @@ cp ~/demo-assets/AGENTS.md AGENTS.md
 cat AGENTS.md
 ```
 
-> [Say — walk through what they see:]
-> "AGENTS.md holds the archiving protocol once, for the whole project.
->  Different tools pick it up differently — Codex reads it
->  automatically, Claude Code reads CLAUDE.md, Cursor has
->  .cursorrules. So each tool needs a one-time pointer to this file.
->  But you write the protocol once. That's the point.
->  gen_ai.md is the index — every task gets a row and the full
->  prompt and output live as separate files in llm_outputs/."
+Walk through what's on screen: `AGENTS.md` holds the archiving protocol once, for the whole project. Different tools pick it up differently — Codex reads it automatically, Claude Code reads `CLAUDE.md`, Cursor has `.cursorrules`. So each tool needs a one-time pointer, but you write the protocol once. `gen_ai.md` is the index — every task gets a row, and the full prompt and output live as separate files in `llm_outputs/`.
 
-> [Ask the room:]
-> "What agent tool does your team use?
->  Has anyone had to maintain separate instructions per tool?"
-> [let one or two people answer — this will resonate]
-
-> [Type:]
+Ask the room: what agent tool does your team use? Has anyone had to maintain separate instructions per tool? This tends to resonate.
 
 ```bash
 git add gen_ai.md llm_outputs/ AGENTS.md
 git commit -m "add LLM usage log and agent archiving protocol"
 ```
 
-### STEP 6: LLM-ASSISTED FIGURE GENERATION (~2.5 min) 
+---
 
-> [Say:]
-> "Now let's use it. Each agent tool has one config file it reads
->  at session start — for Claude Code that's CLAUDE.md. We point
->  it at AGENTS.md so the protocol is loaded before any prompt."
+### 6. (OPTIONAL) LLM-Assisted Figure Generation (~2.5 min)
 
-> [Type:]
+Each agent tool reads one config file at session start. For Claude Code that's `CLAUDE.md`. Point it at `AGENTS.md` so the protocol is loaded before any prompt.
 
 ```bash
 cp AGENTS.md CLAUDE.md
@@ -383,14 +265,7 @@ git add CLAUDE.md
 git commit -m "add CLAUDE.md with agent archiving protocol"
 ```
 
-> [Say:]
-> "Each tool needs the protocol in its own config file —
->  Claude Code reads CLAUDE.md, Codex reads AGENTS.md directly,
->  Cursor gets .cursorrules. So we copy AGENTS.md into whichever
->  file your tool reads. One source, one copy per tool.
->  Now — I just describe the task."
-
-> [Type:]
+Each tool needs the protocol in its own config file — Claude Code reads `CLAUDE.md`, Codex reads `AGENTS.md` directly, Cursor gets `.cursorrules`. One source, one copy per tool. Now describe the task:
 
 ```bash
 claude "Write scripts/figure2.py — use scripts/figure3.py as a
@@ -399,107 +274,92 @@ read data/processed/results.csv, produce a horizontal bar chart
 of accuracy by condition instead of a vertical one."
 ```
 
-> [Wait for Claude Code to finish. Then:]
+After Claude Code finishes:
 
 ```bash
 python scripts/figure2.py --output figures/figure2.pdf
 timg figures/figure2.pdf
 ```
 
-> [Show what got logged:]
+Show what got logged:
 
 ```bash
 cat gen_ai.md
 cat llm_outputs/task-002-output.md
 ```
 
-> [Say:]
-> "The REPRODUCE block is at the bottom of the output file —
->  the model wrote it because the pre-prompt told it to.
->  The table row is already there. Nothing to fill in.
->  Six months from now a reviewer asks: did an LLM write this?
->  You open gen_ai.md, find the row, open the output file.
->  That's the full audit trail."
-
-> [Type:]
+The REPRODUCE block is at the bottom of the output file — the model wrote it because the pre-prompt told it to. The table row is already there. Nothing to fill in manually. Six months from now a reviewer asks: did an LLM write this? Open `gen_ai.md`, find the row, open the output file. That's the full audit trail.
 
 ```bash
 git add scripts/figure2.py figures/figure2.pdf gen_ai.md llm_outputs/
 git commit -m "add LLM-generated figure2 script and archive task-002"
 ```
 
-### STEP 7: TAG AND TEST (~1 min) 
+---
 
-> [Say:]
-> "One more thing before submission. Tag the version.
->  When a reviewer asks about something in six months
->  you want to check out exactly the code that produced your results —
->  not your best guess at what it was."
+### 7. Tag and Verify (~1 min)
 
-> [Type:]
+Tag the version before submission. When a reviewer asks about something in six months, you want to check out exactly the code that produced your results — not your best guess at what it was.
 
 ```bash
 git tag -a v1.0 -m "Version submitted to EuroVIS 2026"
 git log --oneline
 ```
 
-> [Show the log — clean commit history from today.]
+Show the clean commit history from today.
 
-> [Say:]
-> "And before you submit — clone this into a fresh directory.
->  Follow only the README. If it breaks, fix it now.
->  Not after acceptance."
+Before submitting: clone into a fresh directory. Follow only the README. If it breaks, fix it now — not after acceptance.
 
-### CHECKLIST SLIDE (~1 min) 
+---
 
-> [Switch back to slides. Show checklist.]
+### Checklist
 
-> [Walk through each item — tick them off as you go:]
->
->   - [ ] Git repo initialized and pushed
->   - [ ] Folder structure: raw/, processed/, scripts/, figures/
->   - [ ] README.md: what, how, what it produces
->   - [ ] Virtual environment (.venv/) in .gitignore, setup documented in README
->   - [ ] Dependencies locked (requirements.txt)
->   - [ ] One script per figure, relative paths only
->   - [ ] gen_ai.md if LLMs in the research pipeline
->   - [ ] Fresh clone test before submission  ← "do this tonight"
+Walk through each item:
 
-> [Say:]
-> "That's level two. Minimum viable.
->  It took us ten minutes.
->  It will save you three hours on revision day."
+- [ ] Git repo initialized and pushed
+- [ ] Folder structure: `raw/`, `processed/`, `scripts/`, `figures/`
+- [ ] README.md: what, how, what it produces
+- [ ] Virtual environment (`.venv/`) in `.gitignore`, setup documented in README
+- [ ] Dependencies locked (`requirements.txt`)
+- [ ] One script per figure, relative paths only
+- [ ] (optional) `gen_ai.md` if LLMs in the research pipeline
+- [ ] Fresh clone test before submission ← do this tonight
 
-> [Finish.]
+That's level two. Minimum viable. It took ten minutes. It will save three hours on revision day.
 
-### TIMING GUIDE 
+---
 
-  Pivot slide + intro       ~0.5 min
-  Step 1: init + structure  ~2.0 min
-  Step 2: README            ~3.0 min   ← most interactive, can trim
-  Step 3: venv + deps       ~2.0 min
-  Step 4: figure scripts    ~3.0 min   ← the demo moment
-  Step 5: gen_ai.md         ~2.0 min
-  Step 6: LLM figure gen    ~2.5 min   ← Claude Code live
-  Step 7: tag + test        ~1.0 min
-  Checklist + handoff       ~1.0 min
+### Timing Guide
+
+  Opening / framing       ~0.5 min
+  1. Init repository      ~2.0 min
+  2. README               ~3.0 min   ← most interactive, can trim
+  3. Lock dependencies    ~2.0 min
+  4. Figure scripts       ~3.0 min   ← the demo moment
+  5. LLM usage log        ~2.0 min
+  6. LLM figure gen       ~2.5 min   ← Claude Code live
+  7. Tag and verify       ~1.0 min
+  Checklist + handoff     ~1.0 min
   ──
-  TOTAL                    ~17.0 min
+  TOTAL                  ~17.0 min
 
-  If running long: cut Step 7 (tagging), go straight to checklist.
+  If running long: cut step 7 (tagging), go straight to checklist.
   If running very long: skip gen_ai.md live, say "it's in the repo".
 
-### PRE-STAGED FILES
+---
 
-Copy these from ~/demo_files/ to ~/Projects/my_reproducible_paper for the session.
+### Pre-Staged Files
 
-### COMMON PITFALLS TO MENTION (pick 2-3 during step 4) 
+Copy these from `~/demo_files/` to `~/Projects/my_reproducible_paper` for the session.
+
+---
+
+### Common Pitfalls (pick 2–3 during step 4)
 
   ❌  Hardcoded paths  /Users/yourname/Desktop/project/data/...
   ❌  Missing dep in requirements.txt (installed globally, not listed)
-  ❌  Data file not committed or too large for git (→ use (git LFS)[https://git-lfs.com/])
+  ❌  Data file not committed or too large for git (→ use [git LFS](https://git-lfs.com/))
   ❌  Undocumented preprocessing step ("just run this first")
   ❌  Random seed not set → non-deterministic outputs
   ❌  README says run script.py but file is called analysis_FINAL.py
   ❌  package-lock.json in .gitignore
-
