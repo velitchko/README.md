@@ -250,7 +250,7 @@ git commit -m "add figure scripts and processed data"
 
 ### 5. (OPTIONAL) Document LLM Usage (~2 min)
 
-For anyone using LLMs in their research pipeline — not for writing polish or debugging code, but for anything that ends up in the results — this needs to be documented like any other dependency. The structure has two parts: a pre-prompt that instructs any LLM to document itself, and an index table of every task.
+For anyone using LLMs in their research pipeline (not for writing polish or debugging code) and adds generates results in the analysis or discussion sections, this needs to be documented like any other dependency. An approach I suggest could be to have a two part structure: a pre-prompt that instructs any LLM to document itself, and an index table of every task.
 
 ```bash
 cp ~/demo-assets/gen_ai.md gen_ai.md
@@ -258,9 +258,8 @@ cp ~/demo-assets/AGENTS.md AGENTS.md
 cat AGENTS.md
 ```
 
-Walk through what's on screen: `AGENTS.md` holds the archiving protocol once, for the whole project. Different tools pick it up differently — Codex reads it automatically, Claude Code reads `CLAUDE.md`, Cursor has `.cursorrules`. So each tool needs a one-time pointer, but you write the protocol once. `gen_ai.md` is the index — every task gets a row, and the full prompt and output live as separate files in `llm_outputs/`.
+`AGENTS.md` explains the archiving protocol once, for the whole project. Different tools pick it up differently: Codex reads it automatically, Claude Code reads `CLAUDE.md`, Cursor has `.cursorrules`. So each tool needs a one-time pointer, but you write the protocol once. `gen_ai.md` is our index it contains every task and the full prompt and output live as separate files in `llm_outputs/`.
 
-Ask the room: what agent tool does your team use? Has anyone had to maintain separate instructions per tool? This tends to resonate.
 
 ```bash
 git add gen_ai.md llm_outputs/ AGENTS.md
@@ -271,7 +270,7 @@ git commit -m "add LLM usage log and agent archiving protocol"
 
 ### 6. (OPTIONAL) LLM-Assisted Figure Generation (~2.5 min)
 
-Each agent tool reads one config file at session start. For Claude Code that's `CLAUDE.md`. Point it at `AGENTS.md` so the protocol is loaded before any prompt.
+So these config files we add to our repository and commit them.
 
 ```bash
 cp AGENTS.md CLAUDE.md
@@ -279,7 +278,7 @@ git add CLAUDE.md
 git commit -m "add CLAUDE.md with agent archiving protocol"
 ```
 
-Each tool needs the protocol in its own config file — Claude Code reads `CLAUDE.md`, Codex reads `AGENTS.md` directly, Cursor gets `.cursorrules`. One source, one copy per tool. Now describe the task:
+Now we describe the task and prompt our LLM:
 
 ```bash
 claude "Write scripts/figure2.py — use scripts/figure3.py as a
@@ -288,21 +287,21 @@ read data/processed/results.csv, produce a horizontal bar chart
 of accuracy by condition instead of a vertical one."
 ```
 
-After Claude Code finishes:
+After the model finishes we run our script and verify the output:
 
 ```bash
 python scripts/figure2.py --output figures/figure2.pdf
 timg figures/figure2.pdf
 ```
 
-Show what got logged:
+We also verify what got logged:
 
 ```bash
 cat gen_ai.md
 cat llm_outputs/task-002-output.md
 ```
 
-The REPRODUCE block is at the bottom of the output file — the model wrote it because the pre-prompt told it to. The table row is already there. Nothing to fill in manually. Six months from now a reviewer asks: did an LLM write this? Open `gen_ai.md`, find the row, open the output file. That's the full audit trail.
+The REPRODUCE block is at the bottom of the output file. The model wrote it because the pre-prompt told it to. The table row is already there. We do not need to to fill in anything manually. Six months from now a reviewer asks: did an LLM write this? Open `gen_ai.md`, find the row, open the output file and we have our answer.
 
 ```bash
 git add scripts/figure2.py figures/figure2.pdf gen_ai.md llm_outputs/
