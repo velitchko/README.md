@@ -24,6 +24,28 @@ At the end the script writes out the `latexOutputString` into a text file (whose
 
 In the LaTeX source document you only need to add a line to include the produced text file with the macros. In the [`example-paper.tex`](example-paper.tex) example, we do `\input{numbersFromScript.tex}`. Then the respective metric macros can be used in the text. Notice that LaTeX, by default, removes spaces behind macros, so if you want to use macros in the text when there is no punctuation directly following the macro you write, for instance, `\KeyMetricOne{}`. If you want to do further calculations with the numbers in the macro, you can also add `\usepackage{pgf}` to your praeamble, and then you can do things such as `\pgfmathparse{\KeyMetricOne+\KeyMetricTwo}\pgfmathprintnumber[fixed, precision=0]{\pgfmathresult}` to do some arithmetic. The example also contains some code for percentage calculations via the `\percentageRounded{}{}` macro defined at the top, but many more things are possible. Please see the [documentation of the `pgf` package](https://tikz.dev/math-parsing). The LaTeX compilation then produces the final result `example-paper.pdf`, which looks like [`example-paper-result.pdf`](example-paper-result.pdf).
 
+## Running the script
+
+To run the script, setup and activate your virtual python environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate # For Windows venv\Scripts\activate.{bat, ps1}
+```
+
+Run the python script to inject into latex:
+
+```bash
+python latex-injection.py
+```
+
+And finally regenerate the paper using [pdflatex](https://www.tug.org/texlive/) or [overleaf](https://overleaf.com)
+
+```bash
+pdflatex example-paper.tex
+```
+
+
 ## Author
 
 Tobias Isenberg ([https://tobias.isenberg.cc/](https://tobias.isenberg.cc/))
