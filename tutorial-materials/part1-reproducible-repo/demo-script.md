@@ -1,15 +1,16 @@
 # Live Demo Process — Part I
 
 ## README.md: A Tutorial on Reproducible Visualization Research
+
 > EuroVIS 2026 · Velitchko Filipov · Tobias Isenberg · Alexander Lex
 
 ---
 
 ### 1. Initialize the Repository (~2 min)
 
-Start with the most basic question: you have a paper, you have some code — what do you do first?
+Start with the most basic question: you have a paper, you have some code: what do you do first?
 
-Gauge the room: who version controls from day one, and who adds git right before submission? React naturally to the split — it's almost always telling.
+First things first, lets setup a repository.
 
 ```bash
 cd ~/Projects
@@ -18,16 +19,18 @@ cd my-eurovis-paper
 git init
 ```
 
-The commit history is the lab notebook — what changed, when, and why.
+The commit history is your lab notebook. Here you can document what changed, when, and why.
+Lets create some initial structure for our paper.
 
 ```bash
-mkdir -p data/raw data/processed scripts figures paper llm_outputs
-touch README.md AGENTS.md
+mkdir -p data/raw data/processed scripts figures code paper # (optional) llm_outputs
+touch README.md # (optional) AGENTS.md
 ```
 
-Ask if anyone sees a folder they'd add. Take one or two suggestions and include them if sensible — the audience engagement is the point.
+Does this correspond to your typical structure? What other folders would you need?
 
 ```bash
+# optional mkdirs if suggestions
 git add .
 git commit -m "initial project structure"
 ```
@@ -36,11 +39,14 @@ git commit -m "initial project structure"
 
 ### 2. Write the README (~3 min)
 
-The README is the most important file in the repo. Not a placeholder — a document that answers three questions: what is this, how do I run it, what does it produce.
+The README is the most important file in the repo.
+It should focus on answering three main questions: **what is this, how do I run it, what does it produce**.
 
-Build it live, asking the room to fill in each section as you go. The target: a stranger — or you in six months — can go from fresh clone to running system in under ten minutes. Write it for the most tired, confused version of yourself.
+> *(Try to engage people and ask the room to fill in each section.)*
 
----PASTE / TYPE THIS INTO README.md---
+Our target is that a stranger (*or you in six months*) can go from fresh clone to running system in under ten minutes. Write it for the most tired, confused version of yourself.
+
+> ---PASTE / TYPE THIS INTO README.md---
 
 # My EuroVIS Paper
 
@@ -59,7 +65,7 @@ If you use this code, please cite:
 ## Setup
 
 ```bash
-git clone https://github.com/yourname/my-eurovis-paper
+git clone https://github.com/<yourname>/my-eurovis-paper
 cd my-eurovis-paper
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
@@ -94,19 +100,20 @@ Describe where data comes from, how to obtain it, any licensing.
 
 ## Contact
 
-Velitchko Filipov — velitchko.filipov@tuwien.ac.at
+Velitchko Filipov — [velitchko.filipov@tuwien.ac.at](mailto:velitchko.filipov@tuwien.ac.at)
 
----END README---
+> ---END README---
 
-When you reach the Project Structure section, run `tree` in the terminal instead of typing it by hand — always accurate and takes two seconds:
+**TIP** Run `tree` in the terminal to generate project/directory structure instead of typing it by hand (always accurate)
 
 ```bash
 tree -L 2 --dirsfirst
 ```
 
-Good prompts for the room while writing:
-- "What goes in Requirements? What do YOU always forget to list?"
-- "What would you want to see in Usage that you've never seen?"
+Question to participants:
+
+> - "What goes in Requirements? What do YOU always forget to list?"
+> - "What would you want to see in Usage that you've never seen?"
 
 ```bash
 git add README.md
@@ -117,14 +124,16 @@ git commit -m "add README with setup and usage instructions"
 
 ### 3. Lock Dependencies (~2 min)
 
-Before installing anything, isolate. Virtual environments mean the project's packages never collide with your system or another project. This is the one step people skip and then spend two hours debugging on someone else's machine.
+Before installing anything lets isolate our environment.
+We want to create virtual environments so thato our project's packages never clash or cause issues with your system or another project.
+This is the one step people skip and causes hours worth of headaches and debugging.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 ```
 
-Note for Windows: `.venv\Scripts\activate`. The prompt should show `(.venv)`. If it doesn't — some shells suppress it — verify with:
+> Note for Windows: `.venv\Scripts\activate`. The prompt should show `(.venv)`. If it doesn't that means the shell is suppressing it. Verify with:
 
 ```bash
 echo $VIRTUAL_ENV
@@ -133,13 +142,15 @@ which python
 
 `VIRTUAL_ENV` prints the venv path if active, empty if not. `which python` should point into your `.venv` folder.
 
+Lets also add the virtual environment to our gitignore so we dont accidentally commit it.
+
 ```bash
 echo ".venv/" >> .gitignore
 git add .gitignore
 git commit -m "add .gitignore for virtual environment"
 ```
 
-The most common reproducibility failure is dependency drift. You wrote code against pandas 1.5. Someone runs it with pandas 2.1. It either breaks — or worse, runs and gives the wrong answer with no error message.
+The most common reproducibility failure is dependency drift. You wrote code against pandas 1.5. Someone runs it with pandas 2.1. It either breaks or runs and gives the wrong answer with no error message.
 
 ```bash
 pip install matplotlib pandas
@@ -147,7 +158,7 @@ pip freeze > requirements.txt
 cat requirements.txt
 ```
 
-Every package. Exact version. Pinned. Commit this immediately — right after the code runs cleanly. Not as an afterthought.
+Every package and the exact version are now pinned. We want to commit this immediately as soon as our code runs cleanly.
 
 ```bash
 git add requirements.txt
@@ -156,13 +167,13 @@ git commit -m "pin dependencies"
 
 For Node projects: `package-lock.json` already does this. The mistake people make is adding it to `.gitignore`. Don't. That file is what makes JS deps reproducible.
 
-Docker takes this further — full environment isolation — but for most visualization research a pinned `requirements.txt` is sufficient and far more likely to actually get done.
+Docker takes this further. We can isolate our full environment isolation. But for most visualization research a pinned `requirements.txt` or `package-lock.json` is sufficient and far more likely to actually get done.
 
 ---
 
 ### 4. One Script Per Figure (~3 min)
 
-This is the practice that pays off most consistently: every figure in your paper, one command. That's the rule.
+This pays off consistently: every figure in your paper scripted and generated with one command.
 
 Copy the pre-staged files:
 
@@ -218,14 +229,17 @@ echo ""
 echo "Done. All figures saved to figures/"
 ```
 
-Three things to point out: relative paths everywhere (no hardcoded `/Users/velitchko/Desktop/...`), the `cd` at the top anchors the script to the project root so it works from anywhere, and `set -e` stops immediately on failure rather than silently continuing.
+**TIP** Three things to pay attention to: relative paths everywhere (no hardcoded `/Users/velitchko/Desktop/...`), the `cd` at the top anchors the script to the project root so it works from anywhere, and `set -e` stops immediately on failure rather than silently continuing.
 
 ```bash
 bash scripts/run_all.sh
 timg figures/figure3.pdf
 ```
 
-Ask the room: how many of your current figures can be reproduced with a single command? What's stopping the others? Let one or two people answer.
+Question:
+
+> - How many of your current figures can be reproduced with a single command?
+> - What's stopping you from doing this?
 
 ```bash
 git add .
@@ -299,7 +313,7 @@ git commit -m "add LLM-generated figure2 script and archive task-002"
 
 ### 7. Tag and Verify (~1 min)
 
-Tag the version before submission. When a reviewer asks about something in six months, you want to check out exactly the code that produced your results — not your best guess at what it was.
+Tag the version before submission. When a reviewer asks about something in six months, you want to check out exactly the code that produced your results. We dont want to reconstruct and guess what it was.
 
 ```bash
 git tag -a v1.0 -m "Version submitted to EuroVIS 2026"
@@ -308,7 +322,7 @@ git log --oneline
 
 Show the clean commit history from today.
 
-Before submitting: clone into a fresh directory. Follow only the README. If it breaks, fix it now — not after acceptance.
+**TL;DR** Before submitting: create a fresh repository, layout your structure, write the readme README, test if things work, and finally push & tag. Do a fresh clone and make sure everything works. This is cheaper and easier to start with than retrofit after acceptance.
 
 ---
 
@@ -325,41 +339,16 @@ Walk through each item:
 - [ ] (optional) `gen_ai.md` if LLMs in the research pipeline
 - [ ] Fresh clone test before submission ← do this tonight
 
-That's level two. Minimum viable. It took ten minutes. It will save three hours on revision day.
-
----
-
-### Timing Guide
-
-  Opening / framing       ~0.5 min
-  1. Init repository      ~2.0 min
-  2. README               ~3.0 min   ← most interactive, can trim
-  3. Lock dependencies    ~2.0 min
-  4. Figure scripts       ~3.0 min   ← the demo moment
-  5. LLM usage log        ~2.0 min
-  6. LLM figure gen       ~2.5 min   ← Claude Code live
-  7. Tag and verify       ~1.0 min
-  Checklist + handoff     ~1.0 min
-  ──
-  TOTAL                  ~17.0 min
-
-  If running long: cut step 7 (tagging), go straight to checklist.
-  If running very long: skip gen_ai.md live, say "it's in the repo".
-
----
-
-### Pre-Staged Files
-
-Copy these from `~/demo_files/` to `~/Projects/my_reproducible_paper` for the session.
+That's our minimum reproducible paper. It takes a few minutes, it might save you a few days when revising.
 
 ---
 
 ### Common Pitfalls (pick 2–3 during step 4)
 
-  ❌  Hardcoded paths  /Users/yourname/Desktop/project/data/...
-  ❌  Missing dep in requirements.txt (installed globally, not listed)
-  ❌  Data file not committed or too large for git (→ use [git LFS](https://git-lfs.com/))
-  ❌  Undocumented preprocessing step ("just run this first")
-  ❌  Random seed not set → non-deterministic outputs
-  ❌  README says run script.py but file is called analysis_FINAL.py
-  ❌  package-lock.json in .gitignore
+- ❌  Hardcoded paths  /Users/yourname/Desktop/project/data/...
+- ❌  Missing dep in requirements.txt (installed globally, not listed)
+- ❌  Data file not committed or too large for git (→ use [git LFS](https://git-lfs.com/))
+- ❌  Undocumented preprocessing step ("just run this first")
+- ❌  Random seed not set → non-deterministic outputs
+- ❌  README says run script.py but file is called analysis_FINAL.py
+- ❌  package-lock.json in .gitignore
