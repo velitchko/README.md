@@ -342,7 +342,7 @@ That's our minimum reproducible paper. It takes a few minutes, it might save you
 
 ---
 
-### Common Pitfalls (pick 2–3 during step 4)
+### Common Pitfalls 
 
 - ❌  Hardcoded paths  /Users/yourname/Desktop/project/data/...
 - ❌  Missing dep in requirements.txt (installed globally, not listed)
