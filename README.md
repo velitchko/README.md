@@ -4,6 +4,8 @@
 
 Practical guidance and resources for creating reproducible visualization research from the start.
 
+Website: [README.md](https://velitchko.github.io/README.md)
+
 ## About
 
 Reproducibility is fundamental to scientific progress, yet most published visualization research remains difficult or impossible to reproduce. This 100-minute tutorial provides practical guidance on creating reproducible research from the start.
