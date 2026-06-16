@@ -29,15 +29,28 @@ The tutorial is structured in three parts with interactive polling, live demonst
 
 ### Velitchko Filipov
 **TU Wien, Austria**  
-[ORCID: 0000-0001-9592-2179](https://orcid.org/0000-0001-9592-2179) · [LinkedIn](#)
+[ORCID: 0000-0001-9592-2179](https://orcid.org/0000-0001-9592-2179) · [LinkedIn](https://www.linkedin.com/in/velitchko-filipov/)
 
 ### Tobias Isenberg
 **Université Paris-Saclay, CNRS, Inria, LISN, France**  
-[ORCID: 0000-0001-7953-8644](https://orcid.org/0000-0001-7953-8644) · [LinkedIn](#)
+[ORCID: 0000-0001-7953-8644](https://orcid.org/0000-0001-7953-8644) · [LinkedIn](https://www.linkedin.com/in/tobiasisenberg/)
 
 ### Alexander Lex
 **TU Graz, Austria & University of Utah, USA**  
-[ORCID: 0000-0001-6930-5468](https://orcid.org/0000-0001-6930-5468) · [LinkedIn](#)
+[ORCID: 0000-0001-6930-5468](https://orcid.org/0000-0001-6930-5468) · [LinkedIn](https://www.linkedin.com/in/alexander-lex-83961533/)
+
+## Repository Structure
+
+```
+readme.md/
+├── website/                              # Tutorial website (React + Vite, deployed to GitHub Pages)
+├── tutorial-materials/                   # Hands-on materials organized by tutorial segment
+│   ├── part1-reproducible-repo/          # Part I: version control, documentation, LLM logging
+│   ├── part2-approaches/                 # Part II: GRSI, archiving, LaTeX number injection
+│   └── part3-study-replication/          # Part III: reVISit 2 walkthrough, provenance tracking
+├── tips-and-tricks/                      # Quick-reference tips for reproducible practice
+└── awesome-reproducibility-resources/   # Annotated list of tools, platforms, and papers
+```
 
 ## Resources
 
@@ -52,3 +65,11 @@ The [`tutorial-materials/`](tutorial-materials/) directory is organized by tutor
 | [`part3-study-replication/`](tutorial-materials/part3-study-replication/) | Part III (9:45–10:05) | reVISit 2 walkthrough, provenance tracking (Alexander Lex) |
 
 See each subdirectory's `README.md` for details on its contents.
+
+### Tips & Tricks
+
+[`tips-and-tricks/`](tips-and-tricks/) contains quick-reference tips across version control, documentation, dependency management, LLM usage, data/figures, study design, and submission. Things you can adopt immediately.
+
+### Awesome Reproducibility Resources
+
+[`awesome-reproducibility-resources/`](awesome-reproducibility-resources/) is a curated, annotated list of tools, platforms, and papers for reproducible visualization research. Each entry explains what it is and when to use.
