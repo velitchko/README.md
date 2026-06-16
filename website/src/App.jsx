@@ -213,7 +213,7 @@ function App() {
                   <a href="https://orcid.org/0000-0001-9592-2179" target="_blank" rel="noopener noreferrer" className="organizer-link">
                     <User size={14} /> 0000-0001-9592-2179
                   </a>
-                  <a href="#" className="organizer-link">
+                  <a href="https://www.linkedin.com/in/velitchko-filipov/" target="_blank" rel="noopener noreferrer" className="organizer-link">
                     <Linkedin size={14} /> LinkedIn
                   </a>
                 </div>
@@ -230,7 +230,7 @@ function App() {
                   <a href="https://orcid.org/0000-0001-7953-8644" target="_blank" rel="noopener noreferrer" className="organizer-link">
                     <User size={14} /> 0000-0001-7953-8644
                   </a>
-                  <a href="#" className="organizer-link">
+                  <a href="https://www.linkedin.com/in/tobiasisenberg/" target="_blank" rel="noopener noreferrer" className="organizer-link">
                     <Linkedin size={14} /> LinkedIn
                   </a>
                 </div>
@@ -247,7 +247,7 @@ function App() {
                   <a href="https://orcid.org/0000-0001-6930-5468" target="_blank" rel="noopener noreferrer" className="organizer-link">
                     <User size={14} /> 0000-0001-6930-5468
                   </a>
-                  <a href="#" className="organizer-link">
+                  <a href="https://www.linkedin.com/in/alexander-lex-83961533/" target="_blank" rel="noopener noreferrer" className="organizer-link">
                     <Linkedin size={14} /> LinkedIn
                   </a>
                 </div>
