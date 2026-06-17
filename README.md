@@ -62,7 +62,7 @@ The [`tutorial-materials/`](tutorial-materials/) directory is organized by tutor
 
 | Directory | Segment | Contents |
 |-----------|---------|----------|
-| [`part1-reproducible-repo/`](tutorial-materials/part1-reproducible-repo/) | Part I (9:05–9:25) | Live demo files: figure scripts, sample data, LLM logging setup |
+| [`part1-reproducible-repo/`](tutorial-materials/part1-reproducible-repo/) | Part I (9:05–9:25) | Live demo files: figure scripts, sample data, LLM logging setup (Velitchko Filipov) |
 | [`part2-approaches/`](tutorial-materials/part2-approaches/) | Part II (9:25–9:45) | GRSI & archiving examples, LaTeX number injection (Tobias Isenberg) |
 | [`part3-study-replication/`](tutorial-materials/part3-study-replication/) | Part III (9:45–10:05) | reVISit 2 walkthrough, provenance tracking (Alexander Lex) |
 
