@@ -7,14 +7,21 @@ function App() {
   const [copied, setCopied] = useState(false);
 
   const bibtex = `@inproceedings{filipov2026readme,
-  booktitle = {EuroVis 2026 - Panels and Tutorials},
+  booktitle = {EuroVis - Panels and Tutorials},
   editor    = {Sedlmair, Michael and Hoellt, Thomas and van den Elzen, Stef},
   title     = {{README.md: A Tutorial on Reproducible Visualization Research}},
   author    = {Filipov, Velitchko and Isenberg, Tobias and Lex, Alexander},
   year      = {2026},
+  articleno = {evt.20261000},
+  numpages  = {4},
   publisher = {The Eurographics Association},
+  address   = {Goslar, Germany},
   ISBN      = {978-3-03868-304-9},
   DOI       = {10.2312/evt.20261000}
+  shortdoi  = {10/q89x},
+  hal       = {https://hal.science/hal-05661858},
+  url       = {https://velitchko.github.io/README.md/},
+  github    = {https://github.com/velitchko/README.md},
 }`;
 
   const highlightBibtex = (text) => {
