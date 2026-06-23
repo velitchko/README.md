@@ -68,6 +68,10 @@ The [`tutorial-materials/`](tutorial-materials/) directory is organized by tutor
 
 See each subdirectory's `README.md` for details on its contents.
 
+### Tutorial Slides
+
+The slides can be downloaded as [PDF](README.md.slides.pdf) or as [PPTX](README.md.pptx).
+
 ### Tips & Tricks
 
 [`tips-and-tricks/`](tips-and-tricks/) contains quick-reference tips across version control, documentation, dependency management, LLM usage, data/figures, study design, and submission. Things you can adopt immediately.
